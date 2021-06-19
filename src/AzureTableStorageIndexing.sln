@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31402.337
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureTableStorageIndexing", "AzureTableStorageIndexing\AzureTableStorageIndexing.csproj", "{BFE43E3C-3F80-4119-8190-CF58AF7447BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureTableStorageIndexing.TestConsole", "AzureTableStorageIndexing.TestConsole\AzureTableStorageIndexing.TestConsole.csproj", "{B3D28930-B769-447B-ACF9-29533F8DF2FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFE43E3C-3F80-4119-8190-CF58AF7447BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE43E3C-3F80-4119-8190-CF58AF7447BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE43E3C-3F80-4119-8190-CF58AF7447BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE43E3C-3F80-4119-8190-CF58AF7447BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D28930-B769-447B-ACF9-29533F8DF2FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D28930-B769-447B-ACF9-29533F8DF2FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D28930-B769-447B-ACF9-29533F8DF2FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D28930-B769-447B-ACF9-29533F8DF2FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9D98BF18-6F03-4FDE-86A1-7B6EC1986260}
+	EndGlobalSection
+EndGlobal
