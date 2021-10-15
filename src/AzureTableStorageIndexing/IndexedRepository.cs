@@ -12,23 +12,25 @@ namespace AzureTableStorageIndexing
 {
     public class IndexedRepository<T> where T : IndexedTableEntity, new()
     {
-        private CloudTable _cloudTable;
-
         public IndexedRepository(IOptionsMonitor<IndexedRepositoryOptions> options)
         {
             var cloudStorageAccount = CloudStorageAccount.Parse(options.CurrentValue.StorageAccountConnectionString);
-            CloudTableClient = cloudStorageAccount.CreateCloudTableClient();
+            var _cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
             var tableName = typeof(T).Name;
-            _cloudTable = CloudTableClient.GetTableReference(tableName);
-            _cloudTable.CreateIfNotExists();
+            CloudTable = _cloudTableClient.GetTableReference(tableName);
+            CloudTable.CreateIfNotExists();
         }
 
-        protected CloudTableClient CloudTableClient { get; }
+        protected CloudTable CloudTable { get; }
 
-        //public virtual async Task<T> GetByIdAsync(string partitionKey, string id)
-        //{
-
-        //}
+        public virtual T GetByIdAsync(string id, string partitionKey = null)
+        {
+            var q = CloudTable.CreateQuery<T>();
+            if (!string.IsNullOrWhiteSpace(partitionKey))
+                q.Where(x => x.PartitionKey == partitionKey);
+            q.Where(x => x.RowKey == $"{typeof(T).Name}_Id_{id}");
+            return q.Execute().FirstOrDefault();
+        }
 
         //public async IEnumerable<Task<T>> GetByPropertyName(string partitionKey, string propertyName, string propertyValue)
         //{
@@ -50,8 +52,10 @@ namespace AzureTableStorageIndexing
 
         //    string name = (expression.Left as MemberExpression).Member.Name;
         //    string value = expression.Right.NodeType == ExpressionType.
-            
+
         //}
+
+        private Expression<Func<T, bool>> mutateExpression()
 
 
         private class FilterVisitor : ExpressionVisitor
@@ -61,7 +65,7 @@ namespace AzureTableStorageIndexing
                 Console.WriteLine("Constant: {0}", node);
                 return base.VisitConstant(node);
             }
-            
+
             protected override Expression VisitParameter(ParameterExpression node)
             {
                 Console.WriteLine("Parameter: {0}", node);
